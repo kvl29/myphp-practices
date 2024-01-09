@@ -106,7 +106,8 @@ $rows = $stmt->fetchAll();
               <td><?= $r['email'] ?></td>
               <td><?= $r['mobile'] ?></td>
               <td><?= $r['birthday'] ?></td>
-              <td><?= $r['address'] ?></td>
+              
+              <td><?= htmlentities($r['address'])?></td>
             </tr>
           <?php endforeach ?>
         </tbody>
