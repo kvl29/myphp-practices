@@ -59,7 +59,7 @@ $rows = $stmt->fetchAll();
           </li>
 
           <li class="page-item">
-            <a class="page-link" href="?page=<?=$page-1?>">
+            <a class="page-link" href="?page=<?= $page - 1 ?>">
               <i class="fa-solid fa-angle-left"></i>
             </a>
           </li>
@@ -74,7 +74,7 @@ $rows = $stmt->fetchAll();
 
 
           <li class="page-item">
-            <a class="page-link" href="?page=<?=$page+1?>">
+            <a class="page-link" href="?page=<?= $page + 1 ?>">
               <i class="fa-solid fa-angle-right"></i>
             </a>
           </li>
@@ -90,24 +90,36 @@ $rows = $stmt->fetchAll();
       <table class="table table-bordered table-striped">
         <thead>
           <tr>
+            <th><i class="fa-solid fa-trash"></i></th>
             <th>#</th>
             <th>姓名</th>
             <th>電郵</th>
             <th>手機</th>
             <th>生日</th>
             <th>地址</th>
+            <th><i class="fa-solid fa-pen"></i></th>
           </tr>
         </thead>
         <tbody>
           <?php foreach ($rows as $r) : ?>
             <tr>
+              <td>
+                <a href="delete.php?sid=<?= $r['sid']?>">
+                  <i class="fa-solid fa-trash"></i>
+              </td>
+              </a>
               <td><?= $r['sid'] ?></td>
               <td><?= $r['name'] ?></td>
               <td><?= $r['email'] ?></td>
               <td><?= $r['mobile'] ?></td>
               <td><?= $r['birthday'] ?></td>
-              
-              <td><?= htmlentities($r['address'])?></td>
+
+              <td><?= htmlentities($r['address']) ?></td>
+              <td>
+                <a href="edit.php?sid=<?= $r['sid']?>">
+                  <i class="fa-solid fa-pen"></i>
+              </td>
+              </a>
             </tr>
           <?php endforeach ?>
         </tbody>

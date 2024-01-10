@@ -16,16 +16,34 @@ $output = [
 $sql = "INSERT INTO `address_book`(`name`, `email`, `mobile`, `birthday`, `address`, `created_at`) VALUES (?, ?, ?, ?, ?, NOW() )";
 
 $stmt = $pdo->prepare($sql);
-$stmt->execute([
-  $_POST['name'],
-  $_POST['email'],
-  $_POST['mobile'],
-  $_POST['birthday'],
-  $_POST['address'],
-]);
+
+
+$birthday = empty($_POST['birthday'])? null : $_POST ['birthday'];
+$birthday = strtotime($birthday);
+if($birthday===false){
+    $birthday = null;
+}else{
+    $birthday = date('Y-m-d', $birthday);   
+}
+
+try{
+    $stmt->execute([
+        $_POST['name'],
+        $_POST['email'],
+        $_POST['mobile'],
+        $birthday,
+        $_POST['address'],
+      ]);
+      
+
+}catch(PDOException $e){
+    $output['error'] = 'SQL有東西出錯了'. $e->getMessage();
+}
+
 
 // $stmt->rowCount(); # 新增幾筆
 $output['success'] = boolval($stmt->rowCount());
+$output['lastInsertId'] = $pdo -> lastInsertId();//取的最新資料的ＰＫ
 
 header('Content-Type: application/json');
 
