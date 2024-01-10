@@ -104,7 +104,7 @@ $rows = $stmt->fetchAll();
           <?php foreach ($rows as $r) : ?>
             <tr>
               <td>
-                <a href="delete.php?sid=<?= $r['sid']?>">
+                <a href="javascript: delete.php?sid=<?= $r['sid']?>">
                   <i class="fa-solid fa-trash"></i>
               </td>
               </a>
@@ -129,5 +129,13 @@ $rows = $stmt->fetchAll();
   </div>
 
 </div>
+
 <?php include __DIR__ . '/parts/scripts.php'  ?>
+<script>
+  function delete_one(sid){
+    if (confirm(`是否要刪除編號為${sid}的資料?`)){
+      location.href = `delete.php?sid=${sid}`;
+    }
+  }
+</script>
 <?php include __DIR__ . '/parts/html-foot.php'  ?>
