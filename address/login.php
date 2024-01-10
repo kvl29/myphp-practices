@@ -1,6 +1,10 @@
 <?php require __DIR__ . '/parts/db_connect.php';
 $pageName = 'login';
 $title = '登入';
+if(isset($_SESSION['admin'])){
+  header('Location: ./index_.php');
+  exit;
+}
 
 ?>
 <?php include __DIR__ . '/parts/html-head.php'  ?>
@@ -105,6 +109,8 @@ $title = '登入';
             result
           });
           if(result.success){
+            location.href = './index_.php';
+          }else{
             myModal.show();
           }
         })

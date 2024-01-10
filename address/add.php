@@ -1,4 +1,6 @@
-<?php require __DIR__ . '/parts/db_connect.php';
+<?php
+require __DIR__ . '/admin-required.php';
+require __DIR__ . '/parts/db_connect.php';
 $pageName = 'add';
 $title = '新增';
 

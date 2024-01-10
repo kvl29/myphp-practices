@@ -1,4 +1,5 @@
 <?php
+require __DIR__ . '/admin-required.php';
 require __DIR__ . '/parts/db_connect.php';
 header('Content-Type: application/json');
 
