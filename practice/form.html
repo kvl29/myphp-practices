@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="./myphp.php" onsubmit="mySub(event)" method="get">
+        <input type="number" name="a"><br>
+        <input type="number" name="b"><br>
+        <input type="submit">
+    </form>
+<script>
+
+    function mySub(e){
+    fetch(`./myphp.php?a=${a}&b=${b}`)
+    .then((response) =>{
+        return response.text();
+    })
+    .then((result)=>{
+        info.innerHTML= result;
+    })
+    .catch((ex)=>console.log(ex))
+
+    }
+
+</script>
+</body>
+</html>
